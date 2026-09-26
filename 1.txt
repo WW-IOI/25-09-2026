@@ -1,0 +1,93 @@
+#include <iostream>
+#include <limits>
+#include <cstdlib> // Для rand() и srand()
+#include <ctime>   // Для time()
+// N 
+// 0 ... N
+//  < или   >
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    std::srand(std::time(nullptr));
+    int number;
+                            while (1) {
+                                std::cout << "Введите число. (минимальное число это 5)\n";
+                                if (std::cin >> number && number >= 5 ) {
+                                    break;
+                                }
+                                std::cout << "Ошибка при вводе числа.\n";
+                                std::cin.clear(); // Сбрасываем флаги ошибки потока буфер ввода
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                while (1) {
+                                    int temp = -1;
+                                    std::cout << "Желаете ли вы продолжить взаимодействие с программой?\n";
+                                    std::cout << "1 - Да.\n";
+                                    std::cout << "0 - Нет. Выйти из программы.\n";
+                                    if (std::cin >> temp) {
+                                        if (temp == 1) {
+                                            std::cin.clear(); // Сбрасываем флаги ошибки потока буфер ввода
+                                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                            break;
+                                        }
+                                        if (temp == 0) {
+                                            std::cin.clear(); // Сбрасываем флаги ошибки потока буфер ввода
+                                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                            return 0;
+                                        }
+                                    }
+                                    std::cin.clear(); // Сбрасываем флаги ошибки потока
+                                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                }
+                                std::cout << "Попробуйте снова.\n";
+                            }
+    int magic_number;
+    magic_number = std::rand() % (number + 1);
+
+    int mind_number = 0;
+    int kol_vo = 0;
+    while (1) {
+                            while (1) {
+                                std::cout << "Введите число из этого промежутка.\n";
+                                if (std::cin >> mind_number) {
+                                    kol_vo++;
+                                    break;
+                                }
+                                std::cout << "Ошибка при вводе числа.\n";
+                                std::cin.clear(); // Сбрасываем флаги ошибки потока буфер ввода
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                while (1) {
+                                    int temp = -1;
+                                    std::cout << "Желаете ли вы продолжить взаимодействие с программой?\n";
+                                    std::cout << "1 - Да.\n";
+                                    std::cout << "0 - Нет. Выйти из программы.\n";
+                                    if (std::cin >> temp) {
+                                        if (temp == 1) {
+                                            std::cin.clear(); // Сбрасываем флаги ошибки потока буфер ввода
+                                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                            break;
+                                        }
+                                        if (temp == 0) {
+                                            std::cin.clear(); // Сбрасываем флаги ошибки потока буфер ввода
+                                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                            return 0;
+                                        }
+                                    }
+                                    std::cin.clear(); // Сбрасываем флаги ошибки потока
+                                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очищаем буфер ввода
+                                }
+                                std::cout << "Попробуйте снова.\n";
+                            }
+            if (mind_number == magic_number) {
+                std::cout << "Молодец, угадал с " << kol_vo << " попытки!\n";
+                return 0;
+            }
+            if (mind_number < magic_number) {
+                std::cout << "Ваше число меньше( < ) загадоного";
+            }
+            if (mind_number > magic_number) {
+                std::cout << "Ваше число больше( > ) загадоного";
+            }
+    }
+    return 0;
+}
